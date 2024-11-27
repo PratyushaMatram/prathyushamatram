@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,11 +13,13 @@ import org.openqa.selenium.io.FileHandler;
 public class SeleniumWithJavaProject {
 
 	@SuppressWarnings("deprecation")
-	public static void main(String[] args) throws InterruptedException, IOException {
+	public static void main(String[] args) throws Exception {
+		//starting the screenRecord
+		ScreenRecorderUtil.startRecord("main");
 		
 //invoking Browser
 		WebDriver driver = new ChromeDriver();
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\prats\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\zeprats\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver");
 		Thread.sleep(1000);
 		
 //Maximizing the window
@@ -178,10 +179,14 @@ public class SeleniumWithJavaProject {
 		File screenshot1 = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		FileHandler.copy(screenshot1, new File("Totalrecurring_Reimbursement.png"));
 		System.out.println("screenshot saved Successfully");
-		Thread.sleep(3000); 
+		Thread.sleep(5000); 
 		
 		//closing the browser
 		driver.close(); 
+		Thread.sleep(5000);
+		
+		//stop the screen Record
+		ScreenRecorderUtil.stopRecord();
 
 	}
 
